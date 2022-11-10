@@ -1,7 +1,4 @@
-# See you later, aggregator!
-
-# Where to get the API url: https://opendata.paris.fr/explore/dataset/que-faire-a-paris-/information
-# API is short for Application Programming Interface
+# Paris Events Aggregator
 
 # 1. Import libraries
 import requests
@@ -13,9 +10,6 @@ import pydeck as pdk
 from datetime import datetime
 
 # 2. Create functions
-# # I thought about create a url global variable
-# # but I don't plan on using this function on another API
-
 def get_paris_data(rows = 5_000):
     sort = '&sort=-date_start'
     refine = '&refine.address_city=Paris'
@@ -62,7 +56,6 @@ def df_filtering(df):
     if venue_selected:
         df = df.loc[df['address_name'].str.contains(venue_selected, case=False, na=False)]
     return df
-
 
 def df_displaying(df):
     final_columns = ['title', 'address_name','address_zipcode', 'date_start', 'date_end', 'description','price_type','url']
@@ -117,10 +110,10 @@ def geo_plotting(df):
                 , tooltip = tooltip)
     return geoplot
 
-
 # 3. Create the Initial DataFrame
 paris_data = get_paris_data()
-# 4. Onto the Streamlit App
+
+# 4. Streamlit App
 st.set_page_config(
     page_title="Paris Events Calendar",
     page_icon="🇫🇷",
@@ -159,29 +152,19 @@ with col2:
                 datetime.today())
 
 ## Filter based on user's input and display the DataFrame
-
 paris_data_filtered = df_filtering(paris_data)
 paris_data_displayed  = df_displaying(paris_data_filtered)
 
+## Events List
 st.subheader('Upcoming events (matching your criteria):')
 st.dataframe(paris_data_displayed)
 
-
+## Events Map
 if len(paris_data_filtered) == 0:
     st.info('There are no event that meet the current selection.')
 else:
     geoplot = geo_plotting(paris_data_filtered)
     st.pydeck_chart(geoplot)
-
-# An option to show clickable url
-# st.markdown(paris_data_displayed.to_html(render_links=True),unsafe_allow_html=True)
-
-# # Have a google map and link to the event page
-#1 https://www.youtube.com/watch?v=CYi0pPWQ1Do
-# https://towardsdatascience.com/make-dataframes-interactive-in-streamlit-c3d0c4f84ccb
-
-#2 - Add cinema data: https://www.tducret.com/scraping/2019/01/16/un-moyen-original-pour-connaitre-les-séances-dans-votre-cinéma.html
-#repo: https://github.com/tducret/allocine-python
 
 ## Credits
 col1, col2 = st.columns([2,2])
@@ -191,3 +174,5 @@ with col1:
 
 with col2:
     st.write('Fueled with [Paris Open Data](https://opendata.paris.fr/pages/home/)')
+
+# See you later, aggregator!
