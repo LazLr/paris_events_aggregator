@@ -131,7 +131,7 @@ col1, col2 = st.columns([2,1])
 
 with col1:
    st.title('Paris Events Calendar 🇫🇷 ')
-   st.info('This tool will help you look for upcoming event in Paris. You can select an event category, a location and a date in the filters below. A table will be displayed with all the events that match your criteria as well as a map of Paris with all the venues mentioned.')
+   st.info('This tool will help you look for upcoming events in Paris. You can select an event category, a location and a date in the filters below. A table will be displayed with all the events that match your criteria as well as a map of Paris with all the venues mentioned.')
 
 with col2:
     lottie_1 = load_lottieurl('https://assets5.lottiefiles.com/packages/lf20_7D0uqz.json')
