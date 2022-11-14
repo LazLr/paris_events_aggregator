@@ -124,7 +124,7 @@ st.set_page_config(
 col1, col2 = st.columns([2,1])
 
 with col1:
-   st.title('Paris Events Calendar 🇫🇷 ')
+   st.title('Today in Paris 🇫🇷 ')
    st.info('This tool will help you look for upcoming events in Paris. You can select an event category, a location and a date in the filters below. A table will be displayed with all the events that match your criteria as well as a map of Paris with all the venues mentioned.')
 
 with col2:
