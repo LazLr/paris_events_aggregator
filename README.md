@@ -27,6 +27,10 @@ There were several elements that I wanted to include in my script:
 - **Streamlit features**: I soon discovered that this package is super easy and fun to use! I tried to find use cases to cover different features: interactive user inputs, plotting, lottie import, app formatting, ... The website [documentation](https://docs.streamlit.io) is great and was enough for me to achieve what I wanted.
 - **Geovisualization**: I used `Pydeck` to include advanced mapping plotting capabilities (well, mostly a beautiful and interactive map). As I want a bit further than `Streamlit` st.map, I had to put some extra work.
 
+#### 3) Making it live:
+
+I used `pipreqs` to create a `requirements.txt` file Streamlit could use, created a Streamlit account, clicked on New App and copy/paste the link to this repo. Less than the time needed for my tea to infuse.
+
 ## ⏭ Potential Next Steps:
 
 - Include other data sources to offer more options (e.g. more events, restaurants, movie releases, ...).
