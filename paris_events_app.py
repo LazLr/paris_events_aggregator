@@ -4,17 +4,18 @@
 import requests
 import pandas as pd
 import numpy as np
+import pydeck as pdk
 import streamlit as st
 from streamlit_lottie import st_lottie
-import pydeck as pdk
 from datetime import datetime
+
+
 
 # 2. Create functions
 def get_paris_data(rows = 5_000):
     sort = '&sort=-date_start'
     refine = '&refine.address_city=Paris'
-    exclude = '&exclude.tags=Enfants'
-    url_paris_data = f"https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&q=&rows={rows}{sort}&facet=date_start&facet=date_end&facet=tags&facet=address_name&facet=address_zipcode&facet=address_city&facet=transport&facet=price_type&facet=updated_at&facet=programs{refine}{exclude}"
+    url_paris_data = f"https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&q=&rows={rows}{sort}&facet=date_start&facet=date_end&facet=tags&facet=address_name&facet=address_zipcode&facet=address_city&facet=transport&facet=price_type&facet=updated_at&facet=programs{refine}"
     paris_data = requests.get(url_paris_data).json()
     columns = ['title','tags', 'date_start', 'date_end', 'updated_at', 'date_description', 'lead_text', 'url', 'address_zipcode', 'address_name', 'address_street', 'lat_lon', 'price_type','price_detail']
     df = (pd.DataFrame(paris_data['records'])
